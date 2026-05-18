@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="assets/img/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{{url_for('static', filename = 'img/logo.png')}}" type="image/x-icon">
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <!--Link CDN bootstrap-->
@@ -58,13 +58,14 @@
                             
                             <tbody>
                             {% for produto in estoque%}
+                          
                                 <tr>
                                     <th scope="row" style="color:#730202">{{produto.id}}</th>
                                     <td style="color:#730202">{{produto.produto}}</td>
                                     <td style="color:#730202">{{produto.quantidade}}</td>
                                     <td style="color:#730202">{{produto.categoria}}</td>
-                                    <td style="color:#730202">{{produto.custo_un}}</td>
-                                    <td style="color:#730202">{{produto.preco_venda}}</td>
+                                    <td style="color:#730202">R$ {{ "{:,.2f}".format(produto.custo_un).replace(",", "X").replace(".", ",").replace("X", ".") }}</td>
+                                    <td style="color:#730202">R$ {{"{:,.2f}".format(produto.preco_venda).replace(",","X").replace(".", ",").replace("X", ".")}}</td>
                                     <td>
                                         <button class=" btn-edit button-edit-delete" 
                                         data-modal="btn-edit"
